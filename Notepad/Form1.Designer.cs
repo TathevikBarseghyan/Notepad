@@ -36,6 +36,8 @@
             SaveAsToolStrip = new ToolStripMenuItem();
             ExitToolStrip = new ToolStripMenuItem();
             editToolStripMenuItem = new ToolStripMenuItem();
+            DateTimeToolStrip = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripSeparator();
             undoToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripSeparator();
             cutToolStripMenuItem = new ToolStripMenuItem();
@@ -43,12 +45,21 @@
             pasteToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem3 = new ToolStripSeparator();
             selectAllToolStripMenuItem = new ToolStripMenuItem();
+            DeleteToolStrip = new ToolStripMenuItem();
             formatToolStripMenuItem = new ToolStripMenuItem();
             fontToolStripMenuItem = new ToolStripMenuItem();
             colorToolStripMenuItem = new ToolStripMenuItem();
+            WordWrapToolStrip = new ToolStripMenuItem();
+            viewToolStripMenuItem = new ToolStripMenuItem();
+            StatusBarToolStrip = new ToolStripMenuItem();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            ViewHelpToolStrip = new ToolStripMenuItem();
             openFileDialog = new OpenFileDialog();
             saveFileDialog = new SaveFileDialog();
+            statusContent = new StatusStrip();
+            status = new ToolStripStatusLabel();
             menuStrip1.SuspendLayout();
+            statusContent.SuspendLayout();
             SuspendLayout();
             // 
             // textBox
@@ -59,11 +70,12 @@
             textBox.Size = new Size(800, 422);
             textBox.TabIndex = 0;
             textBox.Text = "";
+            textBox.SelectionChanged += textBox_SelectionChanged;
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, formatToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, formatToolStripMenuItem, viewToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 28);
@@ -110,10 +122,22 @@
             // 
             // editToolStripMenuItem
             // 
-            editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { undoToolStripMenuItem, toolStripMenuItem2, cutToolStripMenuItem, copyToolStripMenuItem, pasteToolStripMenuItem, toolStripMenuItem3, selectAllToolStripMenuItem });
+            editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { DateTimeToolStrip, toolStripMenuItem1, undoToolStripMenuItem, toolStripMenuItem2, cutToolStripMenuItem, copyToolStripMenuItem, pasteToolStripMenuItem, toolStripMenuItem3, selectAllToolStripMenuItem, DeleteToolStrip });
             editToolStripMenuItem.Name = "editToolStripMenuItem";
             editToolStripMenuItem.Size = new Size(49, 24);
-            editToolStripMenuItem.Text = "Edit";
+            editToolStripMenuItem.Text = "&Edit";
+            // 
+            // DateTimeToolStrip
+            // 
+            DateTimeToolStrip.Name = "DateTimeToolStrip";
+            DateTimeToolStrip.Size = new Size(224, 26);
+            DateTimeToolStrip.Text = "Date/Time";
+            DateTimeToolStrip.Click += DateTimeToolStrip_Click;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(221, 6);
             // 
             // undoToolStripMenuItem
             // 
@@ -165,12 +189,19 @@
             selectAllToolStripMenuItem.Text = "Select All";
             selectAllToolStripMenuItem.Click += selectAllToolStripMenuItem_Click;
             // 
+            // DeleteToolStrip
+            // 
+            DeleteToolStrip.Name = "DeleteToolStrip";
+            DeleteToolStrip.Size = new Size(224, 26);
+            DeleteToolStrip.Text = "Delete";
+            DeleteToolStrip.Click += DeleteToolStrip_Click;
+            // 
             // formatToolStripMenuItem
             // 
-            formatToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { fontToolStripMenuItem, colorToolStripMenuItem });
+            formatToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { fontToolStripMenuItem, colorToolStripMenuItem, WordWrapToolStrip });
             formatToolStripMenuItem.Name = "formatToolStripMenuItem";
             formatToolStripMenuItem.Size = new Size(70, 24);
-            formatToolStripMenuItem.Text = "Format";
+            formatToolStripMenuItem.Text = "&Format";
             // 
             // fontToolStripMenuItem
             // 
@@ -186,23 +217,80 @@
             colorToolStripMenuItem.Text = "Color";
             colorToolStripMenuItem.Click += colorToolStripMenuItem_Click;
             // 
+            // WordWrapToolStrip
+            // 
+            WordWrapToolStrip.CheckOnClick = true;
+            WordWrapToolStrip.Name = "WordWrapToolStrip";
+            WordWrapToolStrip.Size = new Size(224, 26);
+            WordWrapToolStrip.Text = "Word Wrap";
+            WordWrapToolStrip.CheckedChanged += WordWrapToolStrip_CheckedChanged;
+            // 
+            // viewToolStripMenuItem
+            // 
+            viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { StatusBarToolStrip });
+            viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            viewToolStripMenuItem.Size = new Size(55, 24);
+            viewToolStripMenuItem.Text = "&View";
+            // 
+            // StatusBarToolStrip
+            // 
+            StatusBarToolStrip.CheckOnClick = true;
+            StatusBarToolStrip.Name = "StatusBarToolStrip";
+            StatusBarToolStrip.Size = new Size(158, 26);
+            StatusBarToolStrip.Text = "Status Bar";
+            StatusBarToolStrip.Click += StatusBarToolStrip_Click;
+            // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ViewHelpToolStrip });
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(55, 24);
+            helpToolStripMenuItem.Text = "&Help";
+            // 
+            // ViewHelpToolStrip
+            // 
+            ViewHelpToolStrip.Name = "ViewHelpToolStrip";
+            ViewHelpToolStrip.Size = new Size(160, 26);
+            ViewHelpToolStrip.Text = "View Help";
+            ViewHelpToolStrip.Click += ViewHelpToolStrip_Click;
+            // 
             // openFileDialog
             // 
             openFileDialog.FileName = "openFileDialog";
+            // 
+            // statusContent
+            // 
+            statusContent.ImageScalingSize = new Size(20, 20);
+            statusContent.Items.AddRange(new ToolStripItem[] { status });
+            statusContent.Location = new Point(0, 424);
+            statusContent.Name = "statusContent";
+            statusContent.Size = new Size(800, 26);
+            statusContent.TabIndex = 2;
+            statusContent.Text = "statusStrip1";
+            // 
+            // status
+            // 
+            status.Name = "status";
+            status.Size = new Size(81, 20);
+            status.Text = "Ln 1,  Col 1";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(statusContent);
             Controls.Add(textBox);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "Form1";
             FormClosing += Form1_FormClosing;
+            Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            statusContent.ResumeLayout(false);
+            statusContent.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -229,5 +317,15 @@
         private ToolStripMenuItem colorToolStripMenuItem;
         private OpenFileDialog openFileDialog;
         private SaveFileDialog saveFileDialog;
+        private ToolStripMenuItem DateTimeToolStrip;
+        private ToolStripSeparator toolStripMenuItem1;
+        private ToolStripMenuItem DeleteToolStrip;
+        private ToolStripMenuItem WordWrapToolStrip;
+        private ToolStripMenuItem viewToolStripMenuItem;
+        private ToolStripMenuItem StatusBarToolStrip;
+        private StatusStrip statusContent;
+        private ToolStripStatusLabel status;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem ViewHelpToolStrip;
     }
 }
