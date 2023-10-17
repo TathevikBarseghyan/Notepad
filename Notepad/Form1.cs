@@ -65,6 +65,7 @@ namespace Notepad
 
         private void ExitToolStrip_Click(object sender, EventArgs e)
         {
+
             this.Close();
         }
 
@@ -95,7 +96,7 @@ namespace Notepad
 
         private void DeleteToolStrip_Click(object sender, EventArgs e)
         {
-            textBox.Clear();
+            textBox.Text = textBox.Text.Remove(textBox.SelectionStart, textBox.SelectionLength);
         }
 
         private void fontToolStripMenuItem_Click(object sender, EventArgs e)
@@ -130,6 +131,7 @@ namespace Notepad
 
             statusContent.Visible = StatusBarToolStrip.Checked;
 
+            
         }
 
         private void WordWrapToolStrip_CheckedChanged(object sender, EventArgs e)
@@ -148,6 +150,10 @@ namespace Notepad
         private void textBox_SelectionChanged(object sender, EventArgs e)
         {
             UpdateStatus();
+            if (textBox.SelectionLength > 0)
+            {
+                DeleteToolStrip.Enabled = true;
+            }
         }
 
         private void UpdateStatus()
@@ -164,6 +170,6 @@ namespace Notepad
             _ = Process.Start(new ProcessStartInfo { FileName = @"https://www.bing.com/search?q=get+help+with+notepad+in+windows&filters=guid:%224466414-en-dia%22%20lang:%22en%22&form=T00032&ocid=HelpPane-BingIA", UseShellExecute = true });
         }
 
-        
+
     }
 }

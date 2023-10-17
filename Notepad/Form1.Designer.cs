@@ -93,7 +93,7 @@
             // 
             NewToolStrip.Name = "NewToolStrip";
             NewToolStrip.ShortcutKeys = Keys.Control | Keys.N;
-            NewToolStrip.Size = new Size(224, 26);
+            NewToolStrip.Size = new Size(193, 26);
             NewToolStrip.Text = "New";
             NewToolStrip.Click += NewToolStrip_Click;
             // 
@@ -101,7 +101,7 @@
             // 
             OpenToolStrip.Name = "OpenToolStrip";
             OpenToolStrip.ShortcutKeys = Keys.Control | Keys.O;
-            OpenToolStrip.Size = new Size(224, 26);
+            OpenToolStrip.Size = new Size(193, 26);
             OpenToolStrip.Text = "Open";
             OpenToolStrip.Click += OpenToolStrip_Click;
             // 
@@ -109,14 +109,14 @@
             // 
             SaveAsToolStrip.Name = "SaveAsToolStrip";
             SaveAsToolStrip.ShortcutKeys = Keys.Control | Keys.S;
-            SaveAsToolStrip.Size = new Size(224, 26);
+            SaveAsToolStrip.Size = new Size(193, 26);
             SaveAsToolStrip.Text = "Save As";
             SaveAsToolStrip.Click += SaveAsToolStrip_Click;
             // 
             // ExitToolStrip
             // 
             ExitToolStrip.Name = "ExitToolStrip";
-            ExitToolStrip.Size = new Size(224, 26);
+            ExitToolStrip.Size = new Size(193, 26);
             ExitToolStrip.Text = "Exit";
             ExitToolStrip.Click += ExitToolStrip_Click;
             // 
@@ -191,7 +191,9 @@
             // 
             // DeleteToolStrip
             // 
+            DeleteToolStrip.Enabled = false;
             DeleteToolStrip.Name = "DeleteToolStrip";
+            DeleteToolStrip.ShortcutKeys = Keys.Delete;
             DeleteToolStrip.Size = new Size(224, 26);
             DeleteToolStrip.Text = "Delete";
             DeleteToolStrip.Click += DeleteToolStrip_Click;
@@ -206,14 +208,14 @@
             // fontToolStripMenuItem
             // 
             fontToolStripMenuItem.Name = "fontToolStripMenuItem";
-            fontToolStripMenuItem.Size = new Size(224, 26);
+            fontToolStripMenuItem.Size = new Size(168, 26);
             fontToolStripMenuItem.Text = "Font";
             fontToolStripMenuItem.Click += fontToolStripMenuItem_Click;
             // 
             // colorToolStripMenuItem
             // 
             colorToolStripMenuItem.Name = "colorToolStripMenuItem";
-            colorToolStripMenuItem.Size = new Size(224, 26);
+            colorToolStripMenuItem.Size = new Size(168, 26);
             colorToolStripMenuItem.Text = "Color";
             colorToolStripMenuItem.Click += colorToolStripMenuItem_Click;
             // 
@@ -221,7 +223,7 @@
             // 
             WordWrapToolStrip.CheckOnClick = true;
             WordWrapToolStrip.Name = "WordWrapToolStrip";
-            WordWrapToolStrip.Size = new Size(224, 26);
+            WordWrapToolStrip.Size = new Size(168, 26);
             WordWrapToolStrip.Text = "Word Wrap";
             WordWrapToolStrip.CheckedChanged += WordWrapToolStrip_CheckedChanged;
             // 
